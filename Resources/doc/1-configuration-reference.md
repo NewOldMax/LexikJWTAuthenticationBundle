@@ -13,6 +13,7 @@ lexik_jwt_authentication:
     token_ttl:           86400                                   # token ttl - defaults to 86400
     encoder_service:     lexik_jwt_authentication.jwt_encoder    # token encoder / decoder service - defaults to the jwt encoder (based on the namshi/jose library)
     user_identity_field: [username]                              # array with keys under which the user identity will be stored in the token payload - defaults to username
+                                                                 # your user provider must have implementation of loadUserByIdentity method
 ```
 
 ### Security reference
