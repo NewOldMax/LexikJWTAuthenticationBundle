@@ -1,9 +1,9 @@
 {
-    "name": "lexik/jwt-authentication-bundle",
+    "name": "newoldmax/jwt-authentication-bundle",
     "type": "symfony-bundle",
     "description": "This bundle provides JWT authentication for your Symfony REST API",
     "keywords": ["Symfony", "bundle", "jwt", "jws", "authentication", "api", "rest"],
-    "homepage": "https://github.com/lexik/LexikJWTAuthenticationBundle",
+    "homepage": "https://github.com/newoldmax/LexikJWTAuthenticationBundle",
     "license": "MIT",
     "authors": [
         {
@@ -21,6 +21,10 @@
         {
             "name": "Dev Lexik",
             "email": "dev@lexik.fr"
+        },
+        {
+            "mame": "Maksim Volkau",
+            "email": "newoldmax@gmail.com"
         }
     ],
     "require": {
