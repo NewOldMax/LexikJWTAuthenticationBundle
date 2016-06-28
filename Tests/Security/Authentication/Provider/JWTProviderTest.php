@@ -97,7 +97,7 @@ class JWTProviderTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $userProvider = $this->getUserProviderMock();
-        $userProvider->expects($this->any())->method('loadUserByUsername')->willThrowException(new UsernameNotFoundException());
+        $userProvider->expects($this->any())->method('loadUserByIdentity')->willThrowException(new UsernameNotFoundException());
 
         $eventDispatcher = $this->getEventDispatcherMock();
 
@@ -126,7 +126,7 @@ class JWTProviderTest extends \PHPUnit_Framework_TestCase
         $user->expects($this->any())->method('getRoles')->will($this->returnValue(array()));
 
         $userProvider = $this->getUserProviderMock();
-        $userProvider->expects($this->any())->method('loadUserByUsername')->will($this->returnValue($user));
+        $userProvider->expects($this->any())->method('loadUserByIdentity')->will($this->returnValue($user));
 
         $eventDispatcher = $this->getEventDispatcherMock();
 

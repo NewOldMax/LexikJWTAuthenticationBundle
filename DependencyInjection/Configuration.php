@@ -38,9 +38,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('encoder_service')
                     ->defaultValue('lexik_jwt_authentication.jwt_encoder')
                 ->end()
-                ->scalarNode('user_identity_field')
-                    ->defaultValue('username')
-                    ->cannotBeEmpty()
+                ->arrayNode('user_identity_field')
+                    ->prototype('scalar')->end()
+                    ->defaultValue(array('username'))
                 ->end()
             ->end();
 

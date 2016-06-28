@@ -35,7 +35,7 @@ class JWTProvider implements AuthenticationProviderInterface
     protected $dispatcher;
 
     /**
-     * @var string
+     * @var array
      */
     protected $userIdentityField;
 
@@ -53,7 +53,7 @@ class JWTProvider implements AuthenticationProviderInterface
         $this->userProvider = $userProvider;
         $this->jwtManager = $jwtManager;
         $this->dispatcher = $dispatcher;
-        $this->userIdentityField = 'username';
+        $this->userIdentityField = ['username'];
     }
 
     /**
@@ -87,11 +87,18 @@ class JWTProvider implements AuthenticationProviderInterface
      */
     protected function getUserFromPayload(array $payload)
     {
-        if (!isset($payload[$this->userIdentityField])) {
+        $identity = null;
+        foreach ($this->userIdentityField as $value) {
+            if (isset($payload[$value])) {
+                $identity = $value;
+                break;
+            }
+        }
+        if (!$identity) {
             throw new AuthenticationException('Invalid JWT Token');
         }
 
-        return $this->userProvider->loadUserByUsername($payload[$this->userIdentityField]);
+        return $this->userProvider->loadUserByIdentity($payload[$identity], $identity);
     }
 
     /**
@@ -103,7 +110,7 @@ class JWTProvider implements AuthenticationProviderInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getUserIdentityField()
     {
@@ -111,7 +118,7 @@ class JWTProvider implements AuthenticationProviderInterface
     }
 
     /**
-     * @param string $userIdentityField
+     * @param array $userIdentityField
      */
     public function setUserIdentityField($userIdentityField)
     {

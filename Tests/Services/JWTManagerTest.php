@@ -41,7 +41,7 @@ class JWTManagerTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('encode')
             ->willReturn('secrettoken');
-
+            
         $manager = new JWTManager($encoder, $dispatcher, 3600);
         $this->assertEquals('secrettoken', $manager->create(new User('user', 'password')));
     }
@@ -100,7 +100,7 @@ class JWTManagerTest extends \PHPUnit_Framework_TestCase
             ->willReturn('secrettoken');
 
         $manager = new JWTManager($encoder, $dispatcher, 3600);
-        $manager->setUserIdentityField("email");
+        $manager->setUserIdentityField(array("email"));
         $this->assertEquals('secrettoken', $manager->create(new CustomUser('user', 'password','victuxbb@gmail.com')));
     }
 
